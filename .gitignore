@@ -1,2 +1,5 @@
 .idea
 .env
+
+# sensitive data
+settings_sensitive.py
