@@ -21,11 +21,13 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/1.8/howto/deployment/checklist/
 
-# SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = '$ig7u31@z^^%p)h$emeb+^ev#(rml3ht6ecu=_ia!_dcfjwp$5'
+
+# Secret Key: in sensitive settings
+
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
+
 
 ALLOWED_HOSTS = []
 
@@ -52,7 +54,7 @@ MIDDLEWARE_CLASSES = (
     'django.middleware.security.SecurityMiddleware',
 )
 
-ROOT_URLCONF = 'polymazeweb.urls'
+ROOT_URLCONF = 'myproject.urls'
 
 TEMPLATES = [
     {
@@ -70,11 +72,10 @@ TEMPLATES = [
     },
 ]
 
-WSGI_APPLICATION = 'polymazeweb.wsgi.application'
+WSGI_APPLICATION = 'myproject.wsgi.application'
 
 
-# Database
-# from sensitive setup file
+# Database: In sensitive settings
 
 
 # Internationalization
@@ -82,7 +83,7 @@ WSGI_APPLICATION = 'polymazeweb.wsgi.application'
 
 LANGUAGE_CODE = 'en-us'
 
-TIME_ZONE = 'UTC'
+TIME_ZONE = 'JST'
 
 USE_I18N = True
 
