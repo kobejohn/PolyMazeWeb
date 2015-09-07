@@ -1,9 +1,9 @@
 # Compiled
-.pyc
+*.pyc
 
 # Environments
 .idea
 .env
 
 # sensitive data
-settings_sensitive.py
+**/settings_sensitive.py
