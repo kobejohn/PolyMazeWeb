@@ -5,13 +5,11 @@
     <title>title</title>
 </head>
 <body>
-    {{ hello }}
+    {{ headline }}
     <form action="/" method="post">
         {% csrf_token %}
         {{ form }}
-        <input type="submit" value="Submit" />
+        <input type="submit" value="Create a Maze" />
     </form>
-
-
 </body>
 </html>
