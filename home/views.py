@@ -1,9 +1,6 @@
 import itertools
-import os
 import random
-import StringIO
 
-from django.core.servers.basehttp import FileWrapper
 from django.shortcuts import render
 from django.http import HttpResponse
 from .forms import PolyForm
@@ -11,8 +8,7 @@ from .forms import PolyForm
 import polymaze as pmz
 
 
-# instead of simple random shapes, use a randomized cycle so they are not
-# repeated until all have been used
+# shuffled cycle of shapes to use
 _supershapes_cycle = list(pmz.SUPERSHAPES_DICT.items())
 random.shuffle(_supershapes_cycle)
 _supershapes_cycle = itertools.cycle(_supershapes_cycle)
@@ -38,22 +34,9 @@ def index(request):
 
 def ascii_string_maze(s):
     s = s.replace('\n', r'\n')
-
     supershape_name, supershape = next(_supershapes_cycle)
     grid = pmz.PolyGrid(supershape=supershape)
-    grid.create_string(s, complexity=10)
+    grid.create_string(s, complexity=50)
     maze = pmz.Maze(grid)
     image = maze.image()
-    # output = StringIO.StringIO()
-    # image.save(output, 'PNG')
-    # contents = output.getvalue()
-    # output.close()
     return image
-
-
-    #
-    # filename = os.path.join('.',
-    #                         'ASCII String ({}).png'.format(supershape_name))
-    # maze.image().save(filename, format='PNG')
-    #
-
