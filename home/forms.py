@@ -7,8 +7,7 @@ COMPLEXITY_CHOICES = ((1, '1 (very simple)'),
                       (2, '2'),
                       (5, '5'),
                       (10, '10'),
-                      (20, '20'),
-                      (50, '50 (actual maze)'))
+                      (20, '20 (prints nicely'))
 
 
 class PolyForm(forms.Form):
