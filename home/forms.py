@@ -2,14 +2,13 @@ from django import forms
 
 
 # this stuff should come from a model / db / something else
-TEXT_MAX_LENGTH = 20
+TEXT_MAX_LENGTH = 10
 COMPLEXITY_CHOICES = ((1, '1 (very simple)'),
                       (2, '2'),
                       (5, '5'),
                       (10, '10'),
                       (20, '20'),
-                      (50, '50 (actual maze)'),
-                      (100, '100'))
+                      (50, '50 (actual maze)'))
 
 
 class PolyForm(forms.Form):
