@@ -1,22 +1,26 @@
 from django import forms
 
-
-# this stuff should come from a model / db / something else
-TEXT_MAX_LENGTH = 10
-COMPLEXITY_CHOICES = ((1, '1 (very simple)'),
-                      (2, '2'),
-                      (5, '5'),
-                      (10, '10'),
-                      (20, '20 (prints nicely'))
+from .models_no_db import TextMaze
 
 
 class PolyForm(forms.Form):
+    # text field
+    _max_length = TextMaze.TEXT_MAX
+    _max_cols = _max_length
+    _max_rows = max(1, _max_length-2)
     text = forms.CharField(label='Maze Text',
-                           required=True,
-                           max_length=TEXT_MAX_LENGTH,
-                           widget=forms.Textarea(attrs={'rows': int(TEXT_MAX_LENGTH/2)+1,
-                                                        'cols': TEXT_MAX_LENGTH}),
+                           required=False,
+                           max_length=_max_length,
+                           widget=forms.Textarea(attrs={'rows': _max_rows,
+                                                        'cols': _max_cols}),
                            help_text='This text will be converted into a maze.')
+
+    # complexity field
+    _complexity_min = TextMaze.COMPLEXITY_MIN
+    _complexity_choices = [[c, str(c)] for c in range(TextMaze.COMPLEXITY_MIN, 1+TextMaze.COMPLEXITY_MAX)]
+    if len(_complexity_choices) > 1:
+        _complexity_choices[0][1] += ' (more simple)'
+        _complexity_choices[-1][1] += ' (more complex)'
     complexity = forms.ChoiceField(label='Complexity',
                                    required=True,
-                                   choices=COMPLEXITY_CHOICES)
+                                   choices=_complexity_choices)

@@ -5,11 +5,16 @@
     <title>title</title>
 </head>
 <body>
-    {{ headline }}
+    Welcome to Poly Maze.
     <form action="/" method="post">
         {% csrf_token %}
-        {{ form }}
+        {{ form.text }}
+        <br/>
+        {{ form.complexity }}
         <input type="submit" value="Create a Maze" />
     </form>
+    <br/>
+    {{ note }}
+    {% if image_url %}<img src="{{ image_url }}" width="50%"/>{% endif %}
 </body>
 </html>
