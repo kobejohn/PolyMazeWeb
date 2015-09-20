@@ -1,5 +1,6 @@
 import urllib
 
+from django.core.exceptions import ValidationError
 from django.core.urlresolvers import reverse
 from django.http import HttpResponse, HttpResponseBadRequest
 from django.shortcuts import render
@@ -30,7 +31,7 @@ def image(request):
     complexity = request.GET.get('complexity')
     try:
         maze = TextMaze(text, complexity)
-    except (ValueError, TypeError):
+    except (ValueError, TypeError, ValidationError):
         return HttpResponseBadRequest()
     response = HttpResponse(content_type='image/png')
     im = maze.generate_image()
